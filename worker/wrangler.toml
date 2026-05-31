@@ -1,0 +1,7 @@
+name = "pinterest-shop-worker"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# Secrets are NOT stored here. Set them with:
+#   npx wrangler secret put ANTHROPIC_API_KEY
+#   npx wrangler secret put ALLOWED_ORIGIN   (optional)

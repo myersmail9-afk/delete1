@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PinShop — shop your Pinterest boards</title>
+  <meta name="description" content="Paste a Pinterest board URL and get shoppable Amazon + retailer links for every item, identified by AI vision." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🛍️</span>
+      <span class="name">PinShop</span>
+    </div>
+    <button id="settingsBtn" class="icon-btn" title="Settings" aria-label="Settings">⚙</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Shop your Pinterest boards</h1>
+      <p class="sub">Paste a public board URL. AI identifies each item and links you to Amazon + more.</p>
+
+      <form id="boardForm" class="board-form">
+        <input
+          id="boardUrl"
+          type="url"
+          inputmode="url"
+          placeholder="https://www.pinterest.com/username/board-name/"
+          autocomplete="off"
+          required
+        />
+        <button id="loadBtn" type="submit" class="primary">Load board</button>
+      </form>
+
+      <div class="actions">
+        <button id="identifyAllBtn" class="secondary" disabled>Identify all</button>
+        <span id="status" class="status" role="status" aria-live="polite"></span>
+      </div>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+
+    <p id="empty" class="empty">No board loaded yet.</p>
+  </main>
+
+  <!-- Settings modal -->
+  <div id="settingsModal" class="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <div class="modal-head">
+        <h2 id="settingsTitle">Settings</h2>
+        <button id="closeSettings" class="icon-btn" aria-label="Close">✕</button>
+      </div>
+      <label class="field">
+        <span>Worker URL</span>
+        <input id="cfgWorkerUrl" type="url" placeholder="https://...workers.dev" />
+        <small>Your deployed Cloudflare Worker.</small>
+      </label>
+      <label class="field">
+        <span>Amazon Associates tag</span>
+        <input id="cfgAmazonTag" type="text" placeholder="yourtag-20" />
+        <small>Leave blank for plain Amazon search links.</small>
+      </label>
+      <div class="modal-foot">
+        <button id="saveSettings" class="primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>PinShop · <a href="https://github.com" target="_blank" rel="noopener">source</a></span>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
